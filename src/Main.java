@@ -18,7 +18,7 @@ public class Main {
         String type = compareAndType(firstNumber, secondNumber);
 
         // если тип чисел Римский, то преобразовываем числа в Арабский тип
-        if(Objects.equals(type, "R")){
+        if (Objects.equals(type, "R")) {
             firstNumber = translateToArab(firstNumber);
             secondNumber = translateToArab(secondNumber);
         }
@@ -28,25 +28,24 @@ public class Main {
         int num2 = Integer.parseInt(secondNumber);
 
         // проверяем, входят ли числа в диапазон от 1 до 10
-        if (10<num1 || num1<1 || 10<num2 || num2<1){
+        if (10 < num1 || num1 < 1 || 10 < num2 || num2 < 1) {
             Exception E = new Exception();
             throw E;
         }
 
         // проводим математическую операцию над числами
-        Calc Calc = new Calc();
-        int answer = Calc.calculate(num1, num2, operator);
+        int answer = calculate(num1, num2, operator);
 
         // создаем стринговый ответ для будущей замены переводом числа
         String answerStr = Integer.toString(answer);
 
         // если тип - римский, то переводим число в него
-        if (Objects.equals(type, "R")){
+        if (Objects.equals(type, "R")) {
             answerStr = translateToRome(answer);
         }
 
         // если число не перевелось, отдаем исключение
-        if (Objects.equals(answerStr, "")){
+        if (Objects.equals(answerStr, "")) {
             Exception E = new Exception();
             throw E;
         }
@@ -61,7 +60,7 @@ public class Main {
         String[] romeNums = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         String type1 = "A";
         String type2 = "A";
-        for (int i = 1; i < 11; i++){
+        for (int i = 1; i < 11; i++) {
             if (Objects.equals(num1, romeNums[i])) {
                 type1 = "R";
             }
@@ -70,7 +69,7 @@ public class Main {
                 type2 = "R";
             }
         }
-        if (!type1.equals(type2)){
+        if (!type1.equals(type2)) {
             Exception E = new Exception();
             throw E;
         }
@@ -80,7 +79,7 @@ public class Main {
 
     static void chekingOperator(String oper) throws Exception {
         String operators = "+-*/";
-        if (!operators.contains(oper)){
+        if (!operators.contains(oper)) {
             Exception E = new Exception();
             throw E;
         }
@@ -88,47 +87,42 @@ public class Main {
 
     static String translateToArab(String num) {
         String[] romeNums = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-        for (int i = 1; i < 11; i++){
-            if (Objects.equals(num, romeNums[i])){
+        for (int i = 1; i < 11; i++) {
+            if (Objects.equals(num, romeNums[i])) {
                 num = Integer.toString(i);
             }
         }
         return num;
     }
 
-    static String translateToRome(int num){
+    static String translateToRome(int num) {
         String[] romeNums = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII",
                 "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"};
         String romeNum = "";
-        for (int i = 1; i < 21; i++){
-            if (num==i){
+        for (int i = 1; i < 21; i++) {
+            if (num == i) {
                 romeNum = romeNums[i];
             }
         }
         return romeNum;
     }
-}
 
-class Calc{
-    int calculate(int num1, int num2, String oper){
+    static int calculate(int num1, int num2, String oper) {
         int answer = 0;
-        switch (oper){
+        switch (oper) {
             case "+":
-                answer = num1+num2;
+                answer = num1 + num2;
                 break;
             case "-":
-                answer = num1-num2;
+                answer = num1 - num2;
                 break;
             case "*":
-                answer = num1*num2;
+                answer = num1 * num2;
                 break;
             case "/":
-                answer = num1/num2;
+                answer = num1 / num2;
                 break;
         }
         return answer;
     }
 }
-
-
-
