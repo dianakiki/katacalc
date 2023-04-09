@@ -3,14 +3,18 @@ import java.util.Scanner;
 
 public class Main {
     public static String[] romesTen = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-    public static String[] romesTwenty = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII",
-            "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"};
+    public static String[] romesTwenty = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII",
+            "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"};
 
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите строку");
         String[] massiv = scanner.nextLine().split(" ");
+
+        // проверяем длину массива
+        chekingLength(massiv);
+
         String operator = massiv[1];
 
         // проверка оператора на корректность
@@ -124,6 +128,12 @@ public class Main {
 
     static void chekingRomeAnswer(String answer) throws Exception {
         if (Objects.equals(answer, "")) {
+            throw new Exception();
+        }
+    }
+
+    static void chekingLength(String[] arg) throws Exception {
+        if (arg.length > 3){
             throw new Exception();
         }
     }
