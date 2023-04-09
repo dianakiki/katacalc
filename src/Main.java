@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите строку");
-        String[] massiv = splittingStr(scanner.nextLine());
+        String[] massiv = scanner.nextLine().split(" ");
         String operator = massiv[1];
 
         // проверка оператора на корректность
@@ -28,10 +28,7 @@ public class Main {
         int num2 = Integer.parseInt(secondNumber);
 
         // проверяем, входят ли числа в диапазон от 1 до 10
-        if (10 < num1 || num1 < 1 || 10 < num2 || num2 < 1) {
-            Exception E = new Exception();
-            throw E;
-        }
+        checkingRange(num1, num2);
 
         // проводим математическую операцию над числами
         int answer = calculate(num1, num2, operator);
@@ -45,15 +42,10 @@ public class Main {
         }
 
         // если число не перевелось, отдаем исключение
-        if (Objects.equals(answerStr, "")) {
-            Exception E = new Exception();
-            throw E;
-        }
-        System.out.println(answerStr);
-    }
+        chekingRomeAnswer(answerStr);
 
-    static String[] splittingStr(String arg) {
-        return arg.split(" ");
+        // принтуем ответ
+        System.out.println(answerStr);
     }
 
     static String compareAndType(String num1, String num2) throws Exception {
@@ -124,5 +116,19 @@ public class Main {
                 break;
         }
         return answer;
+    }
+
+    static void checkingRange(int num1, int num2) throws Exception {
+        if (10 < num1 || num1 < 1 || 10 < num2 || num2 < 1) {
+            Exception E = new Exception();
+            throw E;
+        }
+    }
+
+    static void chekingRomeAnswer(String answer) throws Exception {
+        if (Objects.equals(answer, "")) {
+            Exception E = new Exception();
+            throw E;
+        }
     }
 }
