@@ -65,8 +65,7 @@ public class Main {
             }
         }
         if (!type1.equals(type2)) {
-            Exception E = new Exception();
-            throw E;
+            throw new Exception();
         }
 
         return type1;
@@ -75,8 +74,7 @@ public class Main {
     static void chekingOperator(String oper) throws Exception {
         String operators = "+-*/";
         if (!operators.contains(oper)) {
-            Exception E = new Exception();
-            throw E;
+            throw new Exception();
         }
     }
 
@@ -120,15 +118,13 @@ public class Main {
 
     static void checkingRange(int num1, int num2) throws Exception {
         if (10 < num1 || num1 < 1 || 10 < num2 || num2 < 1) {
-            Exception E = new Exception();
-            throw E;
+            throw new Exception();
         }
     }
 
     static void chekingRomeAnswer(String answer) throws Exception {
         if (Objects.equals(answer, "")) {
-            Exception E = new Exception();
-            throw E;
+            throw new Exception();
         }
     }
 }
