@@ -7,35 +7,45 @@ public class Main {
         System.out.println("Введите строку");
         String[] massiv = splittingStr(scanner.nextLine());
         String operator = massiv[1];
-        // проверка оператора на корректность, иначе - исключение
+
+        // проверка оператора на корректность
         chekingOperator(operator);
 
-        // переменная_типа = результат [ф-ии сравнивающей типы чисел, иначе - исключение]
-        // если переменная_типа == Римская, то [перевод чисел в Арабские]
-        // [ф-я проверяющая отсуствие точек и запятых в числах, иначе - исключение]
         String firstNumber = massiv[0];
         String secondNumber = massiv[2];
+
+        // сравнение типов чисел и запись общего типа в переменную
         String type = compareAndType(firstNumber, secondNumber);
+
+        // если тип чисел Римский, то преобразовываем числа в Арабский тип
         if(Objects.equals(type, "R")){
             firstNumber = translateToArab(firstNumber);
             secondNumber = translateToArab(secondNumber);
         }
-        // нужно перевести числа в тип int
+
+        // переводим числа в int для математических операций над ними
         int num1 = Integer.parseInt(firstNumber);
         int num2 = Integer.parseInt(secondNumber);
-        // [ф-я проверяющая вхождение чисел в допустимый диапазон, иначе - исключение]
+
+        // проверяем, входят ли числа в диапазон от 1 до 10
         if (10<num1 || num1<1 || 10<num2 || num2<1){
             Exception E = new Exception();
             throw E;
         }
-        // ответ = результат [ф-ии, выполняющая действие с числами по знаку оператора]
+
+        // проводим математическую операцию над числами
         Calc Calc = new Calc();
         int answer = Calc.calculate(num1, num2, operator);
+
+        // создаем стринговый ответ для будущей замены переводом числа
         String answerStr = Integer.toString(answer);
-        // если переменная_типа == Римская и ответ больше 0, то ответ = [перевод ответа из Арабского числа в Римское]
+
+        // если тип - римский, то переводим число в него
         if (Objects.equals(type, "R")){
             answerStr = translateToRome(answer);
         }
+
+        // если число не перевелось, отдаем исключение
         if (Objects.equals(answerStr, "")){
             Exception E = new Exception();
             throw E;
