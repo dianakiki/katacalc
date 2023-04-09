@@ -2,6 +2,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
+    public static String[] romesTen = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+    public static String[] romesTwenty = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII",
+            "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"};
+
+
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите строку");
@@ -44,20 +49,18 @@ public class Main {
         // если число не перевелось, отдаем исключение
         chekingRomeAnswer(answerStr);
 
-        // принтуем ответ
         System.out.println(answerStr);
     }
 
     static String compareAndType(String num1, String num2) throws Exception {
-        String[] romeNums = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         String type1 = "A";
         String type2 = "A";
         for (int i = 1; i < 11; i++) {
-            if (Objects.equals(num1, romeNums[i])) {
+            if (Objects.equals(num1, romesTen[i])) {
                 type1 = "R";
             }
 
-            if (Objects.equals(num2, romeNums[i])) {
+            if (Objects.equals(num2, romesTen[i])) {
                 type2 = "R";
             }
         }
@@ -78,9 +81,8 @@ public class Main {
     }
 
     static String translateToArab(String num) {
-        String[] romeNums = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         for (int i = 1; i < 11; i++) {
-            if (Objects.equals(num, romeNums[i])) {
+            if (Objects.equals(num, romesTen[i])) {
                 num = Integer.toString(i);
             }
         }
@@ -88,12 +90,10 @@ public class Main {
     }
 
     static String translateToRome(int num) {
-        String[] romeNums = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII",
-                "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"};
         String romeNum = "";
         for (int i = 1; i < 21; i++) {
             if (num == i) {
-                romeNum = romeNums[i];
+                romeNum = romesTwenty[i];
             }
         }
         return romeNum;
