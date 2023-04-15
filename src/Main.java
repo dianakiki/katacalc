@@ -1,12 +1,14 @@
 import java.util.*;
 
 public class Main {
-    public static String[] romesTen = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите строку");
-        String[] massiv = scanner.nextLine().split(" ");
+        System.out.println("Введите выражение:");
+        System.out.println("Ответ: " + calc(scanner.nextLine()));
+    }
+
+    public static String calc(String input) throws Exception{
+        String[] massiv = input.split(" ");
 
         // проверяем длину массива
         chekingLength(massiv);
@@ -49,20 +51,18 @@ public class Main {
         // если число не перевелось, отдаем исключение
         chekingRomeAnswer(answerStr);
 
-        System.out.println(answerStr);
+        return answerStr;
     }
 
     static String compareAndType(String num1, String num2) throws Exception {
         String type1 = "A";
         String type2 = "A";
-        for (int i = 1; i < 11; i++) {
-            if (Objects.equals(num1, romesTen[i])) {
-                type1 = "R";
-            }
-
-            if (Objects.equals(num2, romesTen[i])) {
-                type2 = "R";
-            }
+        String rome = "IVX";
+        if (rome.contains(num1)) {
+            type1 = "R";
+        }
+        if (rome.contains(num2)) {
+            type2 = "R";
         }
         if (!type1.equals(type2)) {
             throw new Exception();
@@ -79,6 +79,7 @@ public class Main {
     }
 
     static String translateToArab(String num) {
+        String[] romesTen = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         for (int i = 1; i < 11; i++) {
             if (Objects.equals(num, romesTen[i])) {
                 num = Integer.toString(i);
@@ -100,12 +101,9 @@ public class Main {
         arabToRome.put(4, "IV");
         arabToRome.put(1, "I");
         for (int key : arabToRome.keySet()){
-            System.out.println(key);
                 while (num >= key){
                     romeNum += arabToRome.get(key);
-                    num -= key;
-                    System.out.println(romeNum + " " + num);
-            }
+                    num -= key;}
         }
         return romeNum;
     }
