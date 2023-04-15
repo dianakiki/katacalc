@@ -1,11 +1,7 @@
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static String[] romesTen = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-    public static String[] romesTwenty = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII",
-            "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"};
-
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
@@ -93,9 +89,22 @@ public class Main {
 
     static String translateToRome(int num) {
         String romeNum = "";
-        for (int i = 1; i < 21; i++) {
-            if (num == i) {
-                romeNum = romesTwenty[i];
+        LinkedHashMap<Integer, String> arabToRome = new LinkedHashMap<>();
+        arabToRome.put(100, "C");
+        arabToRome.put(90, "XC");
+        arabToRome.put(50, "L");
+        arabToRome.put(40, "XL");
+        arabToRome.put(10, "X");
+        arabToRome.put(9, "IX");
+        arabToRome.put(5, "V");
+        arabToRome.put(4, "IV");
+        arabToRome.put(1, "I");
+        for (int key : arabToRome.keySet()){
+            System.out.println(key);
+                while (num >= key){
+                    romeNum += arabToRome.get(key);
+                    num -= key;
+                    System.out.println(romeNum + " " + num);
             }
         }
         return romeNum;
