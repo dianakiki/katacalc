@@ -11,7 +11,7 @@ public class Main {
         String[] massiv = input.split(" ");
 
         // проверяем длину массива
-        chekingLength(massiv);
+        checkingLength(massiv);
 
         String operator = massiv[1];
 
@@ -49,7 +49,7 @@ public class Main {
         }
 
         // если число не перевелось, отдаем исключение
-        chekingRomeAnswer(answerStr);
+        checkingRomeAnswer(answerStr);
 
         return answerStr;
     }
@@ -57,7 +57,7 @@ public class Main {
     static String compareAndType(String num1, String num2) throws Exception {
         String type1 = "A";
         String type2 = "A";
-        String rome = "IVX";
+        String rome = "IIIVIIIX";
         if (rome.contains(num1)) {
             type1 = "R";
         }
@@ -133,13 +133,13 @@ public class Main {
         }
     }
 
-    static void chekingRomeAnswer(String answer) throws Exception {
+    static void checkingRomeAnswer(String answer) throws Exception {
         if (Objects.equals(answer, "")) {
             throw new Exception();
         }
     }
 
-    static void chekingLength(String[] arg) throws Exception {
+    static void checkingLength(String[] arg) throws Exception {
         if (arg.length > 3){
             throw new Exception();
         }
